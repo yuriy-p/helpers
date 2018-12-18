@@ -2,10 +2,10 @@
 
 # Find __MONGO_SHELL_JS__ maker, write it to separate file
 JS_SCRIPT=$(awk '/^__MONGO_SHELL_JS__/ {print NR + 1; exit 0; }' "${0}")
-tail -n+${JS_SCRIPT} "${0}" > ./mongo_dbs_discription.js
+tail -n+${JS_SCRIPT} "${0}" > ./mongo_dbs_description.js
 
 echo ====================== MongoDB databases structure ======================
-mongo --quiet $1 ./mongo_dbs_discription.js
+mongo --quiet $1 ./mongo_dbs_description.js
 if [ $? -ne 0 ]; then
 	(>&2 echo Failed to connect to mongodb)
 	exit 1
